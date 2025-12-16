@@ -7,5 +7,3 @@ export default function Board({children}) {
         
     );
 };
-
-// export default Board;
