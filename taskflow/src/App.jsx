@@ -25,6 +25,11 @@ export default function App() {
       setTasks([...tasks, novaTarefa]);
   }
 
+  function deletarTask(id){
+    const tarefasAtualizadas= tasks.filter(task => task.id !== id);
+    setTasks(tarefasAtualizadas);
+  }
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -34,22 +39,22 @@ export default function App() {
            {/* Componente de Adicionar no topo da coluna */}
             <AddTask add= {adicionarTask} />
 
-            <div className="mt-4">
+            <div className="space-y-2">
                 {
                   tasks.filter(task => task.status === "To-Do")
-                  .map(task => (<AddTask key={task.id} title={task.title} priority={task.priority}/>))
+                  .map(task => (<TaskCard key={task.id} title={task.title} priority={task.priority} deletar={() => deletarTask(task.id)}/>))
                 }
             </div>
         </Column>
 
         <Column title="In Progress">
             {/* <TaskCard title="site da bosta do F" priority="medium" /> */}
-            {tasks.filter(task => task.status === "In Progress").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} />)}
+            {tasks.filter(task => task.status === "In Progress").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} deletar={() => deletarTask(task.id)} />)}
         </Column>
 
         <Column title="Done">
             {/* <TaskCard title="Provas semestrais" priority="low" /> */}
-            {tasks.filter(task => task.status === "Done").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} />)}
+            {tasks.filter(task => task.status === "Done").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} deletar={() => deletarTask(task.id)}/>)}
         </Column>
       </Board>
     </div>
