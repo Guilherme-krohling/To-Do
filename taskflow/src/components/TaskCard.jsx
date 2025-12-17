@@ -1,4 +1,4 @@
-export default function TaskCard({ title, priority, deletar }) {
+export default function TaskCard({ title, priority, deletar, mover}) {
     // Mapa de cores baseado na prioridade
     const colors = {
         high: "border-red-500",
@@ -16,14 +16,17 @@ export default function TaskCard({ title, priority, deletar }) {
                 <span className="text-xs text-gray-400 capitalize">{priority} priority</span>
             </div>
             
-            {/* Botão de lixeira que só aparece quando passa o mouse (group-hover) */}
-            <button className="text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                    onClick={deletar}
-                    // Chama a função deletarTask passando o ID da tarefa
-                    // deletarTask(id);
-            >
-               🗑️
-            </button>
+            <div className=" flex gap-2">
+                {/* Botão de lixeira que só aparece quando passa o mouse (group-hover) */}
+                <button className="text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={deletar}
+                        // Chama a função deletarTask passando o ID da tarefa
+                        // deletarTask(id);
+                        >
+                🗑️
+                </button>
+                <button className="text-gray-400 hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={mover}>➡️</button>
+            </div>
         </div>
     );
 }
