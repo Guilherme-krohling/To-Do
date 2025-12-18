@@ -13,22 +13,19 @@ export default function App() {
     if (salvo) return JSON.parse(salvo);
     
     return [];
-    // {id: 1, title: "task1", status: "To-Do", priority: "high"},
-    // {id: 2, title: "task2", status: "Done", priority: "low"},
-    // {id: 3, title: "taske", status: "In Progress", priority: "medium"}
   });
 
   useEffect(() =>{
     localStorage.setItem("tarefa-salva", JSON.stringify(tasks));
   }, [tasks]);
 
-  function adicionarTask(textoDigitado){
+  function adicionarTask(textoDigitado, priority){
     // Criar o objeto da nova tarefa
     const novaTarefa ={
       id: Math.random(),
       title: textoDigitado,
       status: "To-Do",
-      priority: "low"
+      priority: priority
     }
     
       //atualizar tasks e mantem o que ja tinha
@@ -58,34 +55,70 @@ export default function App() {
     setTasks(tarefasAtualizadas);
   }
 
+  // Objeto de Pesos para usar na ordenação
+  // High vale mais, então fica em cima
+  const pesos = { High: 3, Medium: 2, Low: 1 };
+
   return (
     <div className="min-h-screen">
       <Header />
 
       <Board>
         <Column title="To DO">
-           {/* Componente de Adicionar no topo da coluna */}
-            <AddTask add= {adicionarTask} />
-
-            <div className="space-y-2">
-                {
-                  tasks.filter(task => task.status === "To-Do")
-                  .map(task => (<TaskCard key={task.id} title={task.title} priority={task.priority} 
-                    deletar={() => deletarTask(task.id)} mover={() => moverProximoStatus(task.id)}/>))
-                }
-            </div>
+           <AddTask add= {adicionarTask} />
+           <div className="space-y-2">
+               {
+                 tasks.filter(task => task.status === "To-Do")
+                 // AQUI A MÁGICA DA ORDENAÇÃO:
+                 .sort((a, b) => {
+                    // Compara o peso da tarefa B com a A (Ordem Decrescente)
+                    return (pesos[b.priority] || 0) - (pesos[a.priority] || 0);
+                 })
+                 .map(task => (
+                    <TaskCard 
+                        key={task.id} 
+                        title={task.title} 
+                        priority={task.priority} 
+                        deletar={() => deletarTask(task.id)} 
+                        mover={() => moverProximoStatus(task.id)}
+                    />
+                 ))
+               }
+           </div>
         </Column>
 
         <Column title="In Progress">
-            {/* <TaskCard title="site da bosta do F" priority="medium" /> */}
-            {tasks.filter(task => task.status === "In Progress").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} 
-            deletar={() => deletarTask(task.id)} mover={() => moverProximoStatus(task.id)} />)}
-            
+            {tasks
+                .filter(task => task.status === "In Progress")
+                // Ordenação na segunda coluna também
+                .sort((a, b) => (pesos[b.priority] || 0) - (pesos[a.priority] || 0))
+                .map(task => (
+                    <TaskCard 
+                        key={task.id} 
+                        title={task.title} 
+                        priority={task.priority} 
+                        deletar={() => deletarTask(task.id)} 
+                        mover={() => moverProximoStatus(task.id)} 
+                    />
+                ))
+            }
         </Column>
 
         <Column title="Done">
-            {/* <TaskCard title="Provas semestrais" priority="low" /> */}
-            {tasks.filter(task => task.status === "Done").map(task => <TaskCard key={task.id} title={task.title} priority={task.priority} deletar={() => deletarTask(task.id)}/>)}
+            {tasks
+                .filter(task => task.status === "Done")
+                // Ordenação na terceira coluna também
+                .sort((a, b) => (pesos[b.priority] || 0) - (pesos[a.priority] || 0))
+                .map(task => (
+                    <TaskCard 
+                        key={task.id} 
+                        title={task.title} 
+                        priority={task.priority} 
+                        deletar={() => deletarTask(task.id)}
+                        // Done não precisa de mover, mas mantive o padrão
+                    />
+                ))
+            }
         </Column>
       </Board>
     </div>
