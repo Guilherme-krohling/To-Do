@@ -1,36 +1,53 @@
 import { useState } from "react";
+import { useLanguage } from '../context/LanguageContext'; // 1. Importar
 
 export default function AddTask({add}) {
     const [title, setTitle] = useState ("");
-
-    //por padrao começa low
     const [priority, setPriority] = useState("Low");
+    
+    // 2. Usar o hook
+    const { t } = useLanguage();
+
+    // 3. Array auxiliar para gerar o select (facilita a tradução)
+    const prioritiesOptions = ["High", "Medium", "Low"];
 
     return (  
         <div className="mb-4">
             <div className="flex gap-2 items-end">
                 {/* GRUPO 1: PRIORIDADE */}
                 <div className="flex flex-col">
-                    <label className="text-xs text-gray-500 font-bold mb-1">Priority</label>
+                    {/* Tradução da Label */}
+                    <label className="text-xs text-gray-500 dark:text-dracula-comment font-bold mb-1">
+                        {t('PRIORITY')}
+                    </label>
+                    
                     <select
                         value={priority}
                         onChange={(e) => setPriority(e.target.value)}
-                        className="p-2 text-sm rounded-md border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors bg-white cursor-pointer"                          
+                        className="p-2 text-sm rounded-md border-2 border-gray-200 dark:border-dracula-comment dark:bg-dracula-bg dark:text-dracula-fg focus:outline-none focus:border-blue-500 transition-colors bg-white cursor-pointer"                          
                         >
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
+                        {/* AQUI É O SEGREDO:
+                           O 'value' continua em inglês (option) -> High/Medium/Low
+                           O texto visível usa t() com UpperCase -> ALTA/MÉDIA/BAIXA
+                        */}
+                        {prioritiesOptions.map((option) => (
+                            <option key={option} value={option}>
+                                {t(option.toUpperCase())}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
                 {/* GRUPO 2: NOME DA TAREFA */}
-                {/* w-full faz esse grupo ocupar todo o espaço que sobrar */}
                 <div className="flex flex-col w-full">
-                    <label className="text-xs text-gray-500 font-bold mb-1">Name Task</label>
+                    <label className="text-xs text-gray-500 dark:text-dracula-comment font-bold mb-1">
+                        {t('TASK_NAME')}
+                    </label>
                     <input
-                        className="w-full p-2 text-sm rounded-md border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full p-2 text-sm rounded-md border-2 border-gray-200 dark:border-dracula-comment dark:bg-dracula-bg dark:text-dracula-fg focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
                         type="text"
-                        placeholder="New Task"
+                        // Tradução do Placeholder
+                        placeholder={t('NEW_TASK')}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         onKeyDown={(e) => {
@@ -43,14 +60,13 @@ export default function AddTask({add}) {
                     />
                 </div>
                 <button 
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-bold shadow-md"
+                className="bg-blue-500 hover:bg-blue-700 dark:bg-gradient-to-r dark:from-dracula-purple dark:to-dracula-pink text-white px-4 py-2 rounded-md transition-colors font-bold shadow-md mb-[2px] h-[38px]"
                 onClick={() => {
                     if(!title.trim()) return;
-                    //chama o pai
                     add(title, priority);
-                    //limpa o campo. RESET
                     setTitle("");
                 }}>
+                    {/* Opcional: Se quiser traduzir o "+" para "Adicionar", seria {t('BTN_ADD')} */}
                     +
                 </button>
             </div>

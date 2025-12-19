@@ -7,17 +7,33 @@ import AddTask from "./components/AddTask";
 
 export default function App() {
   const [tasks, setTasks] = useState(()=> {
-
     const salvo = localStorage.getItem("tarefa-salva");
-    
     if (salvo) return JSON.parse(salvo);
-    
     return [];
   });
 
   useEffect(() =>{
     localStorage.setItem("tarefa-salva", JSON.stringify(tasks));
   }, [tasks]);
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+
+  });
+
+  useEffect(() => {
+    if (theme=="dark"){
+      document.documentElement.classList.add("dark");
+    }else{
+      document.documentElement.classList.remove("dark");
+    }
+    //salva
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  function toggleTheme(){
+    setTheme(theme === "light" ? "dark":"light");
+  };
 
   function adicionarTask(textoDigitado, priority){
     // Criar o objeto da nova tarefa
@@ -40,15 +56,23 @@ export default function App() {
   function moverProximoStatus(id){
     const tarefasAtualizadas = tasks.map(task => {
       if(task.id === id){
-        let novoStatus; 
-        if(task.status === "To-Do"){
-          novoStatus = "In Progress";
-        } else if(task.status === "In Progress"){
-          novoStatus = "Done";
-        } else {
-          novoStatus = task.status;
-        }
-        return {...task, status: novoStatus};
+        // let novoStatus; 
+        // if(task.status === "To-Do"){
+        //   novoStatus = "In Progress";
+        // } else if(task.status === "In Progress"){
+        //   novoStatus = "Done";
+        // } else {
+        //   novoStatus = task.status;
+        // }
+
+        ////Lógica simplificada
+        const statusMap = {
+            "To-Do": "In Progress",
+            "In Progress": "Done",
+            "Done": "Done"
+        };
+        // return {...task, status: novoStatus};
+        return {...task, status: statusMap[task.status] || task.status};
       }
       return task;
     });
@@ -60,11 +84,13 @@ export default function App() {
   const pesos = { High: 3, Medium: 2, Low: 1 };
 
   return (
-    <div className="min-h-screen">
-      <Header />
+    // MUDANÇA AQUI: Adicionei as classes do Dracula no final da string.
+    // Isso NÃO apaga o 'min-h-screen', apenas adiciona cor de fundo e texto.
+    <div className="min-h-screen transition-colors dark:bg-dracula-bg dark:text-dracula-fg">
+      <Header mudarTema={toggleTheme}  darkMode={theme ==="dark"}/>
 
       <Board>
-        <Column title="To DO">
+        <Column title="TO_DO">
            <AddTask add= {adicionarTask} />
            <div className="space-y-2">
                {
@@ -87,7 +113,7 @@ export default function App() {
            </div>
         </Column>
 
-        <Column title="In Progress">
+        <Column title="IN_PROGRESS">
             {tasks
                 .filter(task => task.status === "In Progress")
                 // Ordenação na segunda coluna também
@@ -104,7 +130,7 @@ export default function App() {
             }
         </Column>
 
-        <Column title="Done">
+        <Column title="DONE">
             {tasks
                 .filter(task => task.status === "Done")
                 // Ordenação na terceira coluna também

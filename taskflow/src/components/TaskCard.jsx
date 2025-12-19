@@ -1,4 +1,8 @@
+import { useLanguage } from "../context/LanguageContext";
+
 export default function TaskCard({ title, priority, deletar, mover}) {
+    const { t } = useLanguage();
+
     // Mapa de cores baseado na prioridade
     const colors = {
         High: "border-red-500",
@@ -10,10 +14,14 @@ export default function TaskCard({ title, priority, deletar, mover}) {
     const borderClass = colors[priority] || "border-gray-300";
     
     return (
-        <div className={`bg-white p-3 rounded-md shadow-sm border-l-4 ${borderClass} flex justify-between items-center group cursor-pointer hover:shadow-md transition-all`}>
+        // MUDANÇA: dark:bg-dracula-bg (Fundo escuro dentro da coluna cinza dá um efeito de profundidade legal)
+        // E dark:text-dracula-fg para o texto
+        <div className={`bg-white dark:bg-dracula-bg p-3 rounded-md shadow-sm border-l-4 ${borderClass} flex justify-between items-center group cursor-pointer hover:shadow-md transition-all`}>
             <div>
-                <h3 className="text-gray-700 font-medium text-sm">{title}</h3>
-                <span className="text-xs text-gray-400 capitalize">{priority} priority</span>
+                <h3 className="text-gray-700 dark:text-dracula-fg font-medium text-sm">{title}</h3>
+                <span className="text-xs text-gray-400 dark:text-dracula-comment capitalize">
+                    {t(priority.toUpperCase())} {t('PRIORITY')} 
+                </span>
             </div>
             
             <div className=" flex gap-2">
@@ -23,7 +31,18 @@ export default function TaskCard({ title, priority, deletar, mover}) {
                 >
                 🗑️
                 </button>
-                <button className="text-gray-400 hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={mover}>➡️</button>
+                
+                {/* <button className="text-gray-400 hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" 
+                        onClick={mover}>
+                            ➡️
+                </button> */}
+                {/* Botão mover só aparece se a função 'mover' for passada (no Done ela não existe) */}
+                {mover && (
+                    <button className="text-gray-400 hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" 
+                            onClick={mover}>
+                            ➡️
+                    </button>
+                )}
             </div>
         </div>
     );
