@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos globais básicos */
 body {
   @apply bg-slate-100 dark:bg-slate-700 text-slate-800;
+  /* Garante que o scrollbar não fique feio no modo dark (opcional, mas recomendado) */
+  color-scheme: light dark; 
 }
