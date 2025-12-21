@@ -4,42 +4,42 @@
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge)
 ![Badge React](http://img.shields.io/static/v1?label=REACT&message=18&color=blue&style=for-the-badge)
-![Badge License](http://img.shields.io/static/v1?label=License&message=MIT&color=green&style=for-the-badge)
 
 ## 🖼️ Preview do Projeto
 
 <div align="center">
-  <img src="./public/taskflow.gif" alt="Demonstração do TaskFlow" width="700">
+  <img src="public/taskflow.gif" alt="Demonstração do TaskFlow" width="700">
 </div>
 
 <div align="center">
   <table>
     <tr>
         <td align="center" width="50%">
-        <strong>Web Dark mode</strong>
+        <strong>Web</strong>
         <br>
-        <img src="./public/print1.png" alt="Web Dark Mode" width="100%" style="border-radius: 6px;">
+        <img src="public/print1.png" alt="Web Dark" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Light mode</strong>
         <br>
-        <img src="./public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
+        <img src="public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
       </td>
     </tr>
     <tr>
         <td align="center" width="50%">
         <strong>Mobile</strong>
         <br>
-        <img src="./public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
+        <img src="public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Dark Mode</strong>
         <br>
-        <img src="./public/mobileDark.png" alt="Mobile Dark" width="100%" style="border-radius: 6px;">
+        <img src="public/mobileDark.png" alt="Mobile Dark" width="100%" style="border-radius: 6px;">
       </td>
     </tr>
     </table>
 </div>
+
 ## 💻 Sobre o Projeto
 
 O **TaskFlow** é uma aplicação de gerenciamento de tarefas. O objetivo foi criar uma solução para organização pessoal, focando em uma experiência de usuário fluida (UX) e código limpo.
