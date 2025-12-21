@@ -17,24 +17,24 @@
         <td align="center" width="50%">
         <strong>Web</strong>
         <br>
-        <img src="public/print1.png" alt="Web Dark" width="100%" style="border-radius: 6px;">
+        <img src="taskflow/public/print1.png" alt="Web Dark" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Light mode</strong>
         <br>
-        <img src="public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
+        <img src="taskflow/public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
       </td>
     </tr>
     <tr>
         <td align="center" width="50%">
         <strong>Mobile</strong>
         <br>
-        <img src="public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
+        <img src="taskflow/public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Dark Mode</strong>
         <br>
-        <img src="public/mobileDark.png" alt="Mobile Dark" width="100%" style="border-radius: 6px;">
+        <img src="taskflow/public/mobile2.png" alt="Mobile Dark" width="100%" 
       </td>
     </tr>
     </table>
