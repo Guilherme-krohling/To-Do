@@ -8,7 +8,7 @@
 ## 🖼️ Preview do Projeto
 
 <div align="center">
-  <img src="public/taskflow.gif" alt="Demonstração do TaskFlow" width="700">
+  <img src="taskflow/public/taskflow.gif" alt="Demonstração do TaskFlow" width="700">
 </div>
 
 <div align="center">
@@ -34,7 +34,7 @@
        <td align="center" width="50%">
         <strong>Dark Mode</strong>
         <br>
-        <img src="taskflow/public/mobile2.png" alt="Mobile Dark" width="100%" 
+        <img src="taskflow/public/mobileDark.png" alt="Mobile Dark" width="100%" 
       </td>
     </tr>
     </table>
