@@ -72,8 +72,12 @@ export default function TaskCard({ id, title, priority, deletar, mover, atualiza
                         onChange={(e) => setEditTitle(e.target.value)}
                         onBlur={handleSave} // Salva ao clicar fora
                         autoFocus
-                        className="w-full text-sm p-1 rounded border border-blue-500 bg-white dark:bg-dracula-current dark:text-dracula-fg outline-none"
+                        className="w-full text-sm p-1 rounded border border-blue-500 bg-white dark:bg-dracula-current dark:text-dracula-fg outline-none"                    
+                        onPointerDown={(e) => e.stopPropagation()} // Impede que o clique no input tente iniciar o arraste
                         onKeyDown={(e) => {
+                            // Impede que Backspace, Espaço ou Letras ativem atalhos do teclado do dnd-kit
+                            e.stopPropagation();
+
                             if (e.key === "Enter") handleSave();
                             if (e.key === "Escape") {
                                 setEditTitle(title);
