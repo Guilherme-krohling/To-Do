@@ -45,7 +45,7 @@ export default function Footer() {
           onClick={handleCopyEmail}
           className="text-indigo-500 hover:text-indigo-700 dark:text-dracula-cyan dark:hover:text-dracula-pink transition-colors font-medium text-sm flex items-center bg-transparent border-none cursor-pointer p-0"
         >
-          {copied ? getTranslation('FOOTER_COPIED', 'Copiado!') : 'Email'}
+          {copied ? getTranslation('FOOTER_COPIED', 'Copiado!') : 'gonzaga.krohling@gmail.com'}
         </button>
       </div>
     </footer>
