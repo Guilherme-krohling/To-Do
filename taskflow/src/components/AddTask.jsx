@@ -52,7 +52,7 @@ export default function AddTask({ add }) {
                         {t('TASK_NAME')}
                     </label>
                     <input
-                        className="w-full p-2 text-sm rounded-md border-2 border-gray-200 dark:border-dracula-comment dark:bg-dracula-bg dark:text-dracula-fg focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                        className="w-full p-2 text-sm rounded-md border-2 border-gray-200 bg-white text-slate-800 dark:border-dracula-comment dark:bg-dracula-bg dark:text-dracula-fg focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
                         type="text"
                         placeholder={t('NEW_TASK')}
                         value={title}

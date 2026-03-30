@@ -64,7 +64,7 @@ export default function TaskCard({ id, title, priority, deletar, mover, atualiza
             className={`bg-white dark:bg-dracula-bg p-3 rounded-md shadow-sm border-l-4 ${borderClass} flex justify-between items-center group cursor-grab active:cursor-grabbing hover:shadow-md transition-all mb-2`}
         >
             {/* LADO ESQUERDO: TEXTO OU INPUT */}
-            <div className="flex-1 mr-2"> 
+            <div className="flex-1 mr-2 min-w-0 overflow-hidden"> 
                 {isEditing ? (
                     <input 
                         type="text"
@@ -86,7 +86,7 @@ export default function TaskCard({ id, title, priority, deletar, mover, atualiza
                         }}
                     />
                 ) : (
-                    <h3 className="text-gray-700 dark:text-dracula-fg font-medium text-sm break-words">
+                    <h3 className="text-gray-700 dark:text-dracula-fg font-medium text-sm truncate">
                         {title}
                     </h3>
                 )}
@@ -99,45 +99,50 @@ export default function TaskCard({ id, title, priority, deletar, mover, atualiza
             
             {/* LADO DIREITO: BOTÕES DE AÇÃO */}
             <div className="flex items-center gap-2 pl-2">
-                {!isEditing && (
+                {isEditing ? (
                     <button 
-                        className="p-1.5 rounded-md text-gray-500 hover:text-blue-500 hover:bg-gray-100 dark:text-white dark:hover:bg-dracula-current transition-colors"
-                        onClick={() => setIsEditing(true)}
-                        // IMPORTANTÍSSIMO: stopPropagation impede que o clique no botão inicie o arraste do card
-                        onPointerDown={(e) => e.stopPropagation()} 
-                        title="Edit"
-                    >
-                        {/* ÍCONE LÁPIS */}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 h-4 fill-current">
-                            <path d="M410.3 23.1l68.5 68.5c21.3 21.3 21.3 55.8 0 77.1L166.5 481c-4.4 4.4-10.1 7.2-16.3 7.9L32.6 508.8c-17.7 2-33.1-13.4-31.1-31.1l19.9-117.6c.7-6.2 3.5-11.9 7.9-16.3L333.2 23.1c21.3-21.3 55.8-21.3 77.1 0zM124.1 408.8l-54.3 6.1 6.1-54.3L317.9 118.6 366.1 166.8 124.1 408.8z"/>
-                        </svg>
-                    </button>
-                )}
-
-                <button 
-                        className="p-1.5 rounded-md text-gray-500 hover:text-red-500 hover:bg-gray-100 dark:text-white dark:hover:bg-dracula-current transition-colors"
-                        onClick={deletar}
+                        className="px-2 py-1 rounded-md text-white bg-green-500 hover:bg-green-600 dark:bg-dracula-green dark:text-dracula-bg font-bold shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center text-xs" 
+                        onClick={handleSave}
                         onPointerDown={(e) => e.stopPropagation()}
-                        title="Delete"
-                >
-                    {/* ÍCONE LIXEIRA */}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4 fill-current">
-                        <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
-                    </svg>
-                </button>
-                
-                {mover && (
-                    <button 
-                            className="p-1.5 rounded-md text-white bg-blue-500 hover:bg-blue-600 dark:bg-gradient-to-r dark:from-dracula-purple dark:to-dracula-pink shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center" 
-                            onClick={mover}
-                            onPointerDown={(e) => e.stopPropagation()}
-                            title="Move Next"
+                        title="OK"
                     >
-                        {/* ÍCONE SETA */}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4 fill-current">
-                            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
-                        </svg>
+                        OK
                     </button>
+                ) : (
+                    <>
+                        <button 
+                            className="p-1.5 rounded-md text-gray-500 hover:text-blue-500 hover:bg-gray-100 dark:text-white dark:hover:bg-dracula-current transition-colors"
+                            onClick={() => setIsEditing(true)}
+                            onPointerDown={(e) => e.stopPropagation()} 
+                            title="Edit"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 h-4 fill-current">
+                                <path d="M410.3 23.1l68.5 68.5c21.3 21.3 21.3 55.8 0 77.1L166.5 481c-4.4 4.4-10.1 7.2-16.3 7.9L32.6 508.8c-17.7 2-33.1-13.4-31.1-31.1l19.9-117.6c.7-6.2 3.5-11.9 7.9-16.3L333.2 23.1c21.3-21.3 55.8-21.3 77.1 0zM124.1 408.8l-54.3 6.1 6.1-54.3L317.9 118.6 366.1 166.8 124.1 408.8z"/>
+                            </svg>
+                        </button>
+                        <button 
+                            className="p-1.5 rounded-md text-gray-500 hover:text-red-500 hover:bg-gray-100 dark:text-white dark:hover:bg-dracula-current transition-colors"
+                            onClick={deletar}
+                            onPointerDown={(e) => e.stopPropagation()}
+                            title="Delete"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4 fill-current">
+                                <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
+                            </svg>
+                        </button>
+                        {mover && (
+                            <button 
+                                className="p-1.5 rounded-md text-white bg-blue-500 hover:bg-blue-600 dark:bg-gradient-to-r dark:from-dracula-purple dark:to-dracula-pink shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center" 
+                                onClick={mover}
+                                onPointerDown={(e) => e.stopPropagation()}
+                                title="Move Next"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4 fill-current">
+                                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                                </svg>
+                            </button>
+                        )}
+                    </>
                 )}
             </div>
         </div>
