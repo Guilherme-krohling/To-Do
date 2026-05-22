@@ -7,6 +7,7 @@
 
 export const translations = {
   en: {
+    APP_TITLE: 'Checkpoint',
     //Colunas
     TO_DO: 'To Do',
     IN_PROGRESS: 'In Progress',
@@ -56,6 +57,7 @@ export const translations = {
     DEC: 'December',
   },
   pt: {
+    APP_TITLE: 'Ponto de Controle',
     TO_DO: 'A Fazer',
     IN_PROGRESS: 'Em Andamento',
     DONE: 'Feito',

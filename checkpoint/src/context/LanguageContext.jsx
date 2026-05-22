@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '../utils/translations';
 
 // 1. Criação do Contexto (O "canal" de comunicação)
@@ -10,6 +10,11 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
   // Estado que guarda 'en' ou 'pt'
   const [language, setLanguage] = useState('en');
+
+  // Atualiza o título da aba do navegador (document.title) dinamicamente
+  useEffect(() => {
+    document.title = translations[language]['APP_TITLE'] || 'Checkpoint';
+  }, [language]);
 
   /**
    * Função de Tradução (t)

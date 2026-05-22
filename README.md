@@ -1,4 +1,4 @@
-# 🚀 TaskFlow
+# 🚀 Checkpoint
 
 > Um gerenciador de tarefas moderno, responsivo e com suporte a Drag & Drop.
 
@@ -8,7 +8,7 @@
 ## 🖼️ Preview do Projeto
 
 <div align="center">
-  <img src="taskflow/public/taskflow.gif" alt="Demonstração do TaskFlow" width="700">
+  <img src="Checkpoint/public/Checkpoint.gif" alt="Demonstração do Checkpoint" width="700">
 </div>
 
 <div align="center">
@@ -17,24 +17,24 @@
         <td align="center" width="50%">
         <strong>Web</strong>
         <br>
-        <img src="taskflow/public/print1.png" alt="Web Dark" width="100%" style="border-radius: 6px;">
+        <img src="Checkpoint/public/print1.png" alt="Web Dark" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Light mode</strong>
         <br>
-        <img src="taskflow/public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
+        <img src="Checkpoint/public/print2.png" alt="Web Light" width="100%" style="border-radius: 6px;">
       </td>
     </tr>
     <tr>
         <td align="center" width="50%">
         <strong>Mobile</strong>
         <br>
-        <img src="taskflow/public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
+        <img src="Checkpoint/public/mobile1.png" alt="Mobile Light" width="100%" style="border-radius: 6px;">
       </td>
        <td align="center" width="50%">
         <strong>Dark Mode</strong>
         <br>
-        <img src="taskflow/public/mobileDark.png" alt="Mobile Dark" width="100%" 
+        <img src="Checkpoint/public/mobileDark.png" alt="Mobile Dark" width="100%" 
       </td>
     </tr>
     </table>
@@ -42,7 +42,7 @@
 
 ## 💻 Sobre o Projeto
 
-O **TaskFlow** é uma aplicação de gerenciamento de tarefas. O objetivo foi criar uma solução para organização pessoal, focando em uma experiência de usuário fluida (UX) e código limpo.
+O **Checkpoint** é uma aplicação de gerenciamento de tarefas. O objetivo foi criar uma solução para organização pessoal, focando em uma experiência de usuário fluida (UX) e código limpo.
 
 O projeto foi desenvolvido para consolidar conhecimentos avançados em **React**, **Gerenciamento de Estado** e **Bibliotecas de Interface**.
 
@@ -90,7 +90,7 @@ Pré-requisitos: Você precisa ter o [Node.js](https://nodejs.org/) instalado.
 git clone https://github.com/USUARIO/To-Do.git
 
 # 2. Entre na pasta do projeto
-cd taskflow
+cd Checkpoint
 
 # 3. Instale as dependências
 npm install
