@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import DailyBoard from "./components/DailyBoard";
 import WeeklyBoard from "./components/WeeklyBoard";
 import YearlyBoard from "./components/YearlyBoard";
+import ChecklistBoard from "./components/ChecklistBoard";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -51,6 +52,7 @@ export default function App() {
       <div className="flex flex-1 overflow-hidden relative">
         {/* Adicionado overflow-y-auto para evitar travamento em boards longos */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col w-full h-full relative">
+          {currentBoard === "checklist" && <ChecklistBoard />}
           {currentBoard === "daily" && <DailyBoard />}
           {currentBoard === "weekly" && <WeeklyBoard />}
           {currentBoard === "yearly" && <YearlyBoard />}

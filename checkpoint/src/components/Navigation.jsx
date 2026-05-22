@@ -4,6 +4,7 @@ export default function Navigation({ currentBoard, setCurrentBoard, isMobileOpen
     const { t } = useLanguage();
 
     const menus = [
+        { id: 'checklist', label: t('MENU_CHECKLIST') || 'Checklist' },
         { id: 'daily', label: t('MENU_DAILY') || 'Diário' },
         { id: 'weekly', label: t('MENU_WEEKLY') || 'Semanal' },
         { id: 'yearly', label: t('MENU_YEARLY') || 'Anual' },

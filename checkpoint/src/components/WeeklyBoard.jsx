@@ -18,7 +18,7 @@ export default function WeeklyBoard() {
 
   return (
     <div className="flex flex-col h-full w-full relative">
-      <div className="px-6 py-2 flex justify-end items-center shrink-0 bg-white dark:bg-dracula-bg z-10 sticky top-0">
+      <div className="px-6 py-2 hidden md:flex justify-end items-center shrink-0 bg-white dark:bg-dracula-bg z-10 sticky top-0">
         <div className="flex bg-gray-100 dark:bg-dracula-current rounded border border-gray-200 dark:border-dracula-comment overflow-hidden">
           {[1, 3, 7].map(num => (
             <button
